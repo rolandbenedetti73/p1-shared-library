@@ -2,6 +2,20 @@
 
 Shared Puck editor components for distributed use.
 
+## 🚀 Quick Start
+
+### Install
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run storybook
+```
+
+Opens Storybook at `http://localhost:6006` to preview components.
+
 ## 📦 Components
 
 - **TestBlock** - Test component with warning background
@@ -51,3 +65,19 @@ Override CSS variables in your global styles:
   --p1-spacing-md: 1.5rem;    /* Increase default spacing */
 }
 ```
+
+## 📚 Documentation
+
+Live Storybook: `https://rolandbenedetti73.github.io/p1-shared-library` (coming soon)
+
+## 🧪 Testing
+
+```bash
+npm test
+```
+
+## 📝 Adding Components
+
+1. Create component in `components/`
+2. Create story file: `stories/your-component.stories.tsx`
+3. Component appears in Storybook automatically
