@@ -5,6 +5,12 @@ export const MapBlock: ComponentConfig = {
     address: {
       type: "text",
     },
+    latitude: {
+      type: "text",
+    },
+    longitude: {
+      type: "text",
+    },
     height: {
       type: "select",
       options: [
@@ -16,11 +22,16 @@ export const MapBlock: ComponentConfig = {
   },
   defaultProps: {
     address: "1600 Amphitheatre Parkway, Mountain View, CA",
+    latitude: "37.4220",
+    longitude: "-122.0841",
     height: "400",
   },
-  render: ({ address, height }) => {
-    const encodedAddress = encodeURIComponent(address);
-    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}`;
+  render: ({ address, latitude, longitude, height }) => {
+    const lat = parseFloat(latitude);
+    const lon = parseFloat(longitude);
+    // Create bounding box around the point (roughly 0.01 degrees = ~1km)
+    const bbox = `${lon - 0.01},${lat - 0.01},${lon + 0.01},${lat + 0.01}`;
+    const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 
     return (
       <div className="bg-p1-bg-default py-p1-lg px-p1-md">
@@ -60,7 +71,7 @@ export const MapBlock: ComponentConfig = {
               />
             </div>
             <p className="text-xs text-p1-text-muted italic">
-              Note: Google Maps API key required for production use
+              Powered by OpenStreetMap - Find coordinates at openstreetmap.org
             </p>
           </div>
         </div>
