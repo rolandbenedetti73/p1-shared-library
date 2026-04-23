@@ -12,5 +12,11 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+  viteFinal: async (config) => {
+    config.base = process.env.GITHUB_ACTIONS
+      ? '/p1-shared-library/'
+      : '/';
+    return config;
+  },
 };
 export default config;
